@@ -1,0 +1,82 @@
+﻿@page "/Hisoric"
+
+
+<h3>Historic</h3>
+<fieldset>
+    <legend>Specify your search</legend>
+    <label for="provider">Provider :</label>
+    <input @bind="provider_input" type="text" name="provider" />
+    <br />
+
+    <label for="sku">Sku Name :</label>
+    <input @bind="skuname_input" type="text" name="sku" />
+    <br />
+
+    <label for="ram">RAM :</label>
+    <input @bind="ram_input" type="number" name="ram" />
+    <br />
+
+    <label for="cpu">CPU :</label>
+    <input @bind="cpu_input" type="number" name="cpu" />
+    <br />
+
+    <label for="disk">Disk :</label>
+    <input @bind="disk_input" type="number" name="Disk" />
+    <br />
+
+    <label for="maxdiskavailable">Max Disk available :</label>
+    <input @bind="maxdiskavailable_input" type="number" name="maxdiskavailable" />
+    <br />
+
+    <label for="region">Region :</label>
+    <select name="region">
+        @foreach (var region in Regions)
+        {
+        <option value="@region">@region</option>
+        }
+    </select>
+
+</fieldset>
+<button class="btn btn-primary" @onclick="@(async () => { GetHistoric(); })">Search</button>
+@if (show == true) {<Line Data="data" Config="lineConfig"></Line> }
+
+@code {
+    string provider_input = "";
+    string skuname_input = "";
+    int ram_input = 0;
+    int cpu_input = 0;
+    string region_input = "";
+    int disk_input = 0;
+    int maxdiskavailable_input = 0;
+    bool show = false;
+    List<Prices> data = new();
+
+    LineConfig lineConfig = new LineConfig()
+    {
+        Title = new AntDesign.Charts.Title()
+        {
+            Visible = true,
+            Text = "Title"
+        },
+        Description = new Description()
+        {
+            Visible = true,
+            Text = "description"
+        },
+        Padding = "auto",
+        ForceFit = true,
+        XField = "name",
+        YField = "age",
+        Smooth = true
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        List<string> Regions = PricesService.GetPrices();
+    }
+
+    protected void GetHistoric()
+    {
+        data = PricesService.GetHistoric(provider_input, skuname_input, ram_input, cpu_input, region_input, disk_input, maxdiskavailable_input);
+    }
+}

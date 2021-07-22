@@ -1,0 +1,46 @@
+﻿@page "/Catalogue"
+@using CloudPrice.Data
+@using CloudPrice.Services
+@using CloudPrice.IServices
+@using AntDesign;
+@using AntDesign.TableModels;
+@using Radzen
+@using Radzen.Blazor
+
+@inject ISizesService SizesService
+
+<h3>Catalogue</h3>
+<RadzenGrid @ref="SizesGrid"
+            AllowFiltering="true"
+            FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+            FilterMode="FilterMode.Advanced"
+            AllowPaging="true"
+            PageSize="20"
+            AllowSorting="true"
+            Data="@sizes"
+            TItem="Sizes"
+            ColumnWidth="100px"
+            AllowColumnResize="true">
+    <Columns>
+
+        <RadzenGridColumn TItem="Sizes" Property="provider" Title="Provider" />
+        <RadzenGridColumn TItem="Sizes" Property="skuname" Title="Name" />
+        <RadzenGridColumn TItem="Sizes" Property="ram" Title="Ram (mb)" />
+        <RadzenGridColumn TItem="Sizes" Property="cpu" Title="CPU" />
+        <RadzenGridColumn TItem="Sizes" Property="region" Title="Region" />
+        <RadzenGridColumn TItem="Sizes" Property="disk" Title="Disk (Mb)" />
+        <RadzenGridColumn TItem="Sizes" Property="maxdiskavailable" Title="Max disk available" />
+
+    </Columns>
+</RadzenGrid>
+
+@code {
+    string currency;
+    List<Sizes> sizes;
+    RadzenGrid<Sizes> SizesGrid;
+
+    protected override async Task OnInitializedAsync()
+    {
+        sizes = SizesService.GetSizes();
+    }
+}
