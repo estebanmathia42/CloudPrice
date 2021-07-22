@@ -21,7 +21,7 @@ namespace CloudPrice.Services
         public PricesService()
         {
             //mongodb://172.17.0.3:27017/
-            _mongoClient = new MongoClient("mongodb://127.0.0.1:27017");
+            _mongoClient = new MongoClient("mongodb://cosmodbcloudprice:YYlYWVG7CSwzOWnHpTMh0DirehXIGc0pN21RIuhfTh0tP5hFleTdIL9sGvOI2PqqHQiYhecXnRMpAvhyqIllNA==@cosmodbcloudprice.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@cosmodbcloudprice@");
             _database = _mongoClient.GetDatabase("CloudPrice");
             _sizesTable = _database.GetCollection<Prices>("sizes");
         }
