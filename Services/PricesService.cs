@@ -2,13 +2,8 @@
 using CloudPrice.IServices;
 using MongoDB.Driver;
 using MongoDB.Bson;
-using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.IO;
-using AntDesign.TableModels;
 
 namespace CloudPrice.Services
 {
@@ -36,15 +31,38 @@ namespace CloudPrice.Services
             return _sizesTable.Find(x => true).ToList();
         }
 
-        public List<Prices> GetHistoric(string provider_input,string skuname_input,int ram_input,int cpu_input,string region_input,int disk_input,int maxdiskavailable_input)
+        public List<Prices> GetHistoric(string skuname_input,string region_input)
         {
-            return _sizesTable.Find(x => true).ToList();//rajouter les filtres
+            //var builder = Builders<BsonDocument>.Filter;
+            //var filter = 
+            
+            return _database.GetCollection<Prices>("prices").Find(x => true).ToList();//rajouter les filtres
         }
         public List<string> GetRegions()
         {
-            _sizesTable.Find(x => true).ToList();//rajouter les filtres
+            var result =  _sizesTable.Find(new BsonDocument()).Project("{_id: 0, skuname:0,cpu:0,ram:0,effectivedate:0,scantime:0,provider:0}").ToList().Distinct();//rajouter les filtres
             List<string> data = new();
+            foreach (var region in result)
+            {
+                if (!(data.Contains((string)region["region"]))){
+                    data.Add((string)region["region"]);
+                }
+            }
             return  data;
+        }
+
+        public List<string> GetSkuname()
+        {
+            var result = _sizesTable.Find(new BsonDocument()).Project("{_id: 0,cpu:0,ram:0,effectivedate:0,scantime:0,provider:0,region:0}").ToList().Distinct();//rajouter les filtres
+            List<string> data = new();
+            foreach (var region in result)
+            {
+                if (!(data.Contains((string)region["skuname"])))
+                {
+                    data.Add((string)region["skuname"]);
+                }
+            }
+            return data;
         }
     }
 }

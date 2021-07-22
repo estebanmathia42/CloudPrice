@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using CloudPrice.Data;
-using AntDesign;
-using AntDesign.TableModels;
+using MongoDB.Bson;
 
 namespace CloudPrice.IServices
 {
@@ -12,8 +8,9 @@ namespace CloudPrice.IServices
     {
         Prices GetPrice(string SizesID);
         List<Prices> GetPrices();
-        List<Prices> GetHistoric(string provider_input, string skuname_input, int ram_input, int cpu_input, string region_input, int disk_input, int maxdiskavailable_input);
+        List<Prices> GetHistoric(string skuname_input, string region_input);
         List<string> GetRegions();
+        List<string> GetSkuname();
         //Task<GridEntity<Prices>> GetPricesAsync(int pageIndex, int pageSize, QueryModel<Prices> queryModel);
     }
 }

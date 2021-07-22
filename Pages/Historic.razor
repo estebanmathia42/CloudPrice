@@ -1,40 +1,20 @@
-﻿@page "/Hisoric"
+﻿@page "/Historic"
 @using CloudPrice.Data
-@using CloudPrice.Services
 @using CloudPrice.IServices
-@using AntDesign;
-@using AntDesign.TableModels;
-@using Radzen
-@using Radzen.Blazor
+@using MongoDB.Bson;
 
 @inject IPricesService PricesService
 
 <h3>Historic</h3>
 <fieldset>
-    <legend>Specify your search</legend>
-    <label for="provider">Provider :</label>
-    <input @bind="provider_input" type="text" name="provider" />
-    <br />
 
-    <label for="sku">Sku Name :</label>
-    <input @bind="skuname_input" type="text" name="sku" />
-    <br />
-
-    <label for="ram">RAM :</label>
-    <input @bind="ram_input" type="number" name="ram" />
-    <br />
-
-    <label for="cpu">CPU :</label>
-    <input @bind="cpu_input" type="number" name="cpu" />
-    <br />
-
-    <label for="disk">Disk :</label>
-    <input @bind="disk_input" type="number" name="Disk" />
-    <br />
-
-    <label for="maxdiskavailable">Max Disk available :</label>
-    <input @bind="maxdiskavailable_input" type="number" name="maxdiskavailable" />
-    <br />
+    <label for="Skuname">Skuname :</label>
+    <select name="Skuname">
+        @foreach (var skuname in Skuname)
+        {
+            <option value="@skuname">@skuname</option>
+        }
+    </select>
 
     <label for="region">Region :</label>
     <select name="region">
@@ -60,6 +40,7 @@
     bool show = false;
     List<Prices> data = new();
     List<string> Regions = new();
+    List<string> Skuname = new();
 
     LineConfig lineConfig = new LineConfig()
     {
@@ -75,18 +56,20 @@
         },
         Padding = "auto",
         ForceFit = true,
-        XField = "name",
-        YField = "age",
+        XField = "effectivedate",
+        YField = "priceperunit",
         Smooth = true
     };
 
     protected override async Task OnInitializedAsync()
     {
         Regions = PricesService.GetRegions();
+        Skuname = PricesService.GetSkuname();
     }
 
     protected void GetHistoric()
     {
-        data = PricesService.GetHistoric(provider_input, skuname_input, ram_input, cpu_input, region_input, disk_input, maxdiskavailable_input);
+        show = true;
+        data = PricesService.GetHistoric(skuname_input,region_input);
     }
 }

@@ -83,6 +83,13 @@ using CloudPrice.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 11 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\_Imports.razor"
+using AntDesign;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 12 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\_Imports.razor"
 using AntDesign.Charts;
 
@@ -98,47 +105,19 @@ using CloudPrice.Data;
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
-using CloudPrice.Services;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
 using CloudPrice.IServices;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
-using AntDesign;
+#line 4 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
+using MongoDB.Bson;
 
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 6 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
-using AntDesign.TableModels;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 7 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
-using Radzen;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 8 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
-using Radzen.Blazor;
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Hisoric")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Historic")]
     public partial class Historic : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -147,7 +126,7 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 52 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
+#line 32 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
        
     string provider_input = "";
     string skuname_input = "";
@@ -159,6 +138,7 @@ using Radzen.Blazor;
     bool show = false;
     List<Prices> data = new();
     List<string> Regions = new();
+    List<string> Skuname = new();
 
     LineConfig lineConfig = new LineConfig()
     {
@@ -174,19 +154,21 @@ using Radzen.Blazor;
         },
         Padding = "auto",
         ForceFit = true,
-        XField = "name",
-        YField = "age",
+        XField = "effectivedate",
+        YField = "priceperunit",
         Smooth = true
     };
 
     protected override async Task OnInitializedAsync()
     {
         Regions = PricesService.GetRegions();
+        Skuname = PricesService.GetSkuname();
     }
 
     protected void GetHistoric()
     {
-        data = PricesService.GetHistoric(provider_input, skuname_input, ram_input, cpu_input, region_input, disk_input, maxdiskavailable_input);
+        show = true;
+        data = PricesService.GetHistoric(skuname_input,region_input);
     }
 
 #line default

@@ -104,7 +104,7 @@ using AntDesign.Charts;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 30 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Shared\NavMenu.razor"
+#line 34 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 
