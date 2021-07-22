@@ -1,5 +1,6 @@
 ﻿<StaticWebAssets Version="1.0">
-  <ContentRoot BasePath="/" Path="C:\Users\Esteban\source\repos\CloudPrice\obj\Debug\net5.0\scopedcss\bundle\" />
+  <ContentRoot BasePath="/" Path="C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\scopedcss\bundle\" />
   <ContentRoot BasePath="_content/AntDesign" Path="C:\Users\Esteban\.nuget\packages\antdesign\0.8.4\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/AntDesign.Charts" Path="C:\Users\Esteban\.nuget\packages\antdesign.charts\0.2.1\build\..\staticwebassets\" />
   <ContentRoot BasePath="_content/Radzen.Blazor" Path="C:\Users\Esteban\.nuget\packages\radzen.blazor\3.7.2\build\..\staticwebassets\" />
 </StaticWebAssets>

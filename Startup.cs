@@ -24,6 +24,7 @@ namespace CloudPrice
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<ISizesService, SizesService>();
+            services.AddScoped<IPricesService, PricesService>();
             services.AddAntDesign();
         }
 

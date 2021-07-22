@@ -1,5 +1,13 @@
 ﻿@page "/Hisoric"
+@using CloudPrice.Data
+@using CloudPrice.Services
+@using CloudPrice.IServices
+@using AntDesign;
+@using AntDesign.TableModels;
+@using Radzen
+@using Radzen.Blazor
 
+@inject IPricesService PricesService
 
 <h3>Historic</h3>
 <fieldset>
@@ -32,13 +40,14 @@
     <select name="region">
         @foreach (var region in Regions)
         {
-        <option value="@region">@region</option>
+            <option value="@region">@region</option>
         }
     </select>
 
 </fieldset>
 <button class="btn btn-primary" @onclick="@(async () => { GetHistoric(); })">Search</button>
-@if (show == true) {<Line Data="data" Config="lineConfig"></Line> }
+@if (show == true)
+{<Line Data="data" Config="lineConfig"></Line>}
 
 @code {
     string provider_input = "";
@@ -50,6 +59,7 @@
     int maxdiskavailable_input = 0;
     bool show = false;
     List<Prices> data = new();
+    List<string> Regions = new();
 
     LineConfig lineConfig = new LineConfig()
     {
@@ -72,7 +82,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        List<string> Regions = PricesService.GetPrices();
+        Regions = PricesService.GetRegions();
     }
 
     protected void GetHistoric()

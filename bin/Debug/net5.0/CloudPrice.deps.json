@@ -34,6 +34,7 @@
       "CloudPrice/1.0.0": {
         "dependencies": {
           "AntDesign": "0.8.4",
+          "AntDesign.Charts": "0.2.1",
           "MongoDB.Driver": "2.13.0",
           "Radzen.Blazor": "3.7.2",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
@@ -341,6 +342,22 @@
         },
         "compile": {
           "lib/net5.0/AntDesign.dll": {}
+        }
+      },
+      "AntDesign.Charts/0.2.1": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "5.0.0",
+          "Microsoft.AspNetCore.Components.Web": "5.0.0",
+          "OneOf": "2.1.155"
+        },
+        "runtime": {
+          "lib/netstandard2.1/AntDesign.Charts.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.1/AntDesign.Charts.dll": {}
         }
       },
       "DnsClient/1.4.0": {
@@ -2940,6 +2957,13 @@
       "sha512": "sha512-D+J1Mzi5jwhTUehpTXgp89tNb/tFk8nGdf0KYIZFbVK43udWNH3wifsKfogHw659ayP9QCHCC91UQsVatfC60w==",
       "path": "antdesign/0.8.4",
       "hashPath": "antdesign.0.8.4.nupkg.sha512"
+    },
+    "AntDesign.Charts/0.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bKbSLrwV4Yrx6UYzblD0/4SS0IINJxm+CtEC7UM8A/vF5XSdYq9lO+JaW7PzySuICad1zcssbYJkqkNxjhkNCg==",
+      "path": "antdesign.charts/0.2.1",
+      "hashPath": "antdesign.charts.0.2.1.nupkg.sha512"
     },
     "DnsClient/1.4.0": {
       "type": "package",

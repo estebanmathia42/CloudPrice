@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bb0Da3xDe4CszMEgVItMLiizimEB4cl072GvYDEgWbFhMaZaTP8mHbbjx/IBzxuzaGFk0isI+1kNzWrAOu6WRA==",
+  "dgSpecHash": "mggSgG6mbv+9cCttHE+M9SbcLUWO0F3f8aFryG7mgqol6t+3QGHv1bQ3Fg09CQOib5txDYmUkoULG06ebzObbw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Esteban\\source\\repos\\CloudPrice\\CloudPrice.csproj",
+  "projectFilePath": "C:\\Users\\Esteban\\Source\\Repos\\CloudPricewebapp\\CloudPrice.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Esteban\\.nuget\\packages\\antdesign\\0.8.4\\antdesign.0.8.4.nupkg.sha512",
     "C:\\Users\\Esteban\\.nuget\\packages\\antdesign.charts\\0.2.1\\antdesign.charts.0.2.1.nupkg.sha512",

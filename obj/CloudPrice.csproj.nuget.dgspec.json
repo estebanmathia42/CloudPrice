@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Esteban\\source\\repos\\CloudPrice\\CloudPrice.csproj": {}
+    "C:\\Users\\Esteban\\Source\\Repos\\CloudPricewebapp\\CloudPrice.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Esteban\\source\\repos\\CloudPrice\\CloudPrice.csproj": {
+    "C:\\Users\\Esteban\\Source\\Repos\\CloudPricewebapp\\CloudPrice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Esteban\\source\\repos\\CloudPrice\\CloudPrice.csproj",
+        "projectUniqueName": "C:\\Users\\Esteban\\Source\\Repos\\CloudPricewebapp\\CloudPrice.csproj",
         "projectName": "CloudPrice",
-        "projectPath": "C:\\Users\\Esteban\\source\\repos\\CloudPrice\\CloudPrice.csproj",
+        "projectPath": "C:\\Users\\Esteban\\Source\\Repos\\CloudPricewebapp\\CloudPrice.csproj",
         "packagesPath": "C:\\Users\\Esteban\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Esteban\\source\\repos\\CloudPrice\\obj\\",
+        "outputPath": "C:\\Users\\Esteban\\Source\\Repos\\CloudPricewebapp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
