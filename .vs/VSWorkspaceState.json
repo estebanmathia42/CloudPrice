@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Services"
   ],
-  "SelectedNode": "\\CloudPrice.sln",
+  "SelectedNode": "\\Services\\SizesService.cs",
   "PreviewInSolutionExplorer": false
 }

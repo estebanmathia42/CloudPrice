@@ -8,9 +8,9 @@ namespace CloudPrice.IServices
     {
         Prices GetPrice(string SizesID);
         List<Prices> GetPrices();
-        List<Prices> GetHistoric(string skuname_input, string region_input);
-        List<string> GetRegions();
-        List<string> GetSkuname();
+        IEnumerable<BsonDocument> GetHistoric(string skuname_input);
+        List<string> GetProvider();
+        List<string> GetSkuname(string provider);
         //Task<GridEntity<Prices>> GetPricesAsync(int pageIndex, int pageSize, QueryModel<Prices> queryModel);
     }
 }

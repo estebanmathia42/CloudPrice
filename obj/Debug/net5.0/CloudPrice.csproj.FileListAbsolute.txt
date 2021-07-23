@@ -73,7 +73,6 @@ C:\Users\Esteban\source\repos\CloudPrice\obj\Debug\net5.0\RazorDeclaration\Pages
 C:\Users\Esteban\source\repos\CloudPrice\obj\Debug\net5.0\Razor\Pages\Compare.razor.g.cs
 C:\Users\Esteban\source\repos\CloudPrice\bin\Debug\net5.0\Radzen.Blazor.dll
 C:\Users\Esteban\source\repos\CloudPrice\bin\Debug\net5.0\System.Linq.Dynamic.Core.dll
-C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\CloudPrice.csproj.AssemblyReference.cache
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\CloudPrice.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\CloudPrice.AssemblyInfoInputs.cache
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\CloudPrice.AssemblyInfo.cs
@@ -151,3 +150,4 @@ C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\CloudPrice.Razor
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\CloudPrice.Views.pdb
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\CloudPrice.csproj.CopyComplete
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\CloudPrice.genruntimeconfig.cache
+C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\CloudPrice.csproj.AssemblyReference.cache

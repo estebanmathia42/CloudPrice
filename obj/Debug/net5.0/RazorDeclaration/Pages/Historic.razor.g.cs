@@ -126,18 +126,15 @@ using MongoDB.Bson;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 32 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
+#line 36 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
        
     string provider_input = "";
     string skuname_input = "";
-    int ram_input = 0;
-    int cpu_input = 0;
-    string region_input = "";
-    int disk_input = 0;
-    int maxdiskavailable_input = 0;
-    bool show = false;
-    List<Prices> data = new();
-    List<string> Regions = new();
+    bool show_graph = false;
+    bool show_skuname = false;
+    string check_provider_change = "";
+    IEnumerable<BsonDocument> data;
+    List<string> Provider = new();
     List<string> Skuname = new();
 
     LineConfig lineConfig = new LineConfig()
@@ -145,12 +142,12 @@ using MongoDB.Bson;
         Title = new AntDesign.Charts.Title()
         {
             Visible = true,
-            Text = "Title"
+            Text = "Price Historic"
         },
         Description = new Description()
         {
             Visible = true,
-            Text = "description"
+            Text = "Evolution of price"
         },
         Padding = "auto",
         ForceFit = true,
@@ -161,14 +158,30 @@ using MongoDB.Bson;
 
     protected override async Task OnInitializedAsync()
     {
-        Regions = PricesService.GetRegions();
-        Skuname = PricesService.GetSkuname();
+        Provider = PricesService.GetProvider();
+
+        base.OnInitialized();
+        var timer = new System.Timers.Timer(100);
+        timer.Elapsed += (s, e) =>
+        {
+            InvokeAsync(() =>
+            {
+                if (check_provider_change != provider_input)
+                {
+                    check_provider_change = provider_input;
+                    show_skuname = true;
+                    Skuname = PricesService.GetSkuname(provider_input);
+                    StateHasChanged();
+                }
+            });
+        };
+        timer.Start();
     }
 
     protected void GetHistoric()
     {
-        show = true;
-        data = PricesService.GetHistoric(skuname_input,region_input);
+        show_graph = true;
+        data = PricesService.GetHistoric(skuname_input);
     }
 
 #line default

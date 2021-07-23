@@ -8,38 +8,39 @@
 <h3>Historic</h3>
 <fieldset>
 
-    <label for="Skuname">Skuname :</label>
-    <select name="Skuname">
-        @foreach (var skuname in Skuname)
+    <label for="Provider">Provider :</label>
+    <select name="Provider" @bind="provider_input">
+        @foreach (var provider in Provider)
         {
-            <option value="@skuname">@skuname</option>
+            <option value="@provider">@provider</option>
         }
     </select>
 
-    <label for="region">Region :</label>
-    <select name="region">
-        @foreach (var region in Regions)
-        {
-            <option value="@region">@region</option>
-        }
-    </select>
+    @if (show_skuname == true)
+    {
+        <label for="Skuname">Skuname :</label>
+        <select name="Skuname" @bind="skuname_input">
+            @foreach (var skuname in Skuname)
+            {
+                <option value="@skuname">@skuname</option>
+            }
+        </select>
+    }
 
 </fieldset>
-<button class="btn btn-primary" @onclick="@(async () => { GetHistoric(); })">Search</button>
-@if (show == true)
+@if (show_skuname == true) {<button class="btn btn-primary" @onclick="@(async () => { GetHistoric(); })">Search</button>}
+    
+@if (show_graph == true)
 {<Line Data="data" Config="lineConfig"></Line>}
 
 @code {
     string provider_input = "";
     string skuname_input = "";
-    int ram_input = 0;
-    int cpu_input = 0;
-    string region_input = "";
-    int disk_input = 0;
-    int maxdiskavailable_input = 0;
-    bool show = false;
-    List<Prices> data = new();
-    List<string> Regions = new();
+    bool show_graph = false;
+    bool show_skuname = false;
+    string check_provider_change = "";
+    IEnumerable<BsonDocument> data;
+    List<string> Provider = new();
     List<string> Skuname = new();
 
     LineConfig lineConfig = new LineConfig()
@@ -47,12 +48,12 @@
         Title = new AntDesign.Charts.Title()
         {
             Visible = true,
-            Text = "Title"
+            Text = "Price Historic"
         },
         Description = new Description()
         {
             Visible = true,
-            Text = "description"
+            Text = "Evolution of price"
         },
         Padding = "auto",
         ForceFit = true,
@@ -63,13 +64,29 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Regions = PricesService.GetRegions();
-        Skuname = PricesService.GetSkuname();
+        Provider = PricesService.GetProvider();
+
+        base.OnInitialized();
+        var timer = new System.Timers.Timer(100);
+        timer.Elapsed += (s, e) =>
+        {
+            InvokeAsync(() =>
+            {
+                if (check_provider_change != provider_input)
+                {
+                    check_provider_change = provider_input;
+                    show_skuname = true;
+                    Skuname = PricesService.GetSkuname(provider_input);
+                    StateHasChanged();
+                }
+            });
+        };
+        timer.Start();
     }
 
     protected void GetHistoric()
     {
-        show = true;
-        data = PricesService.GetHistoric(skuname_input,region_input);
+        show_graph = true;
+        data = PricesService.GetHistoric(skuname_input);
     }
 }

@@ -17,6 +17,7 @@ namespace CloudPrice.Data
         public int maxdiskavailable { get; set; } = 0;
         public string provider { get; set; } = "";
         public string region { get; set; } = "";
+        public string scantime { get; set; } = "";
     }
     public class GridEntity<T>
     {

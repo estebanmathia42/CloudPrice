@@ -9,7 +9,7 @@ namespace CloudPrice.Data
         public string Id { get; set; } = ObjectId.GenerateNewId().ToString();
         public string skuname { get; set; } = "";
         public string unit { get; set; } = "";
-        public int priceperunit { get; set; } = 0;
+        public double priceperunit { get; set; }
         public string currency { get; set; } = "";
         public string region { get; set; } = "";
         public string billingtype { get; set; } = "";
