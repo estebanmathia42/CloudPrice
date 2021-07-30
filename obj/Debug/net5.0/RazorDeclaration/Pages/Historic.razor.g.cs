@@ -126,18 +126,27 @@ using MongoDB.Bson;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 36 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
+#line 61 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
        
     string provider_input = "";
     string skuname_input = "";
+    string region_input = "";
+    string billingtype_input = "";
     bool show_graph = false;
     bool show_skuname = false;
+    bool show_region = false;
+    bool show_billingtype = false;
+    bool show_button = false;
     string check_provider_change = "";
-    IEnumerable<BsonDocument> data;
+    string check_skuname_change = "";
+    string check_region_change = "";
+    string check_billingtype_change = "";
+    List<Prices> data;
     List<string> Provider = new();
     List<string> Skuname = new();
-
-    LineConfig lineConfig = new LineConfig()
+    List<string> Region = new();
+    List<string> Billingtype = new();
+    AreaConfig areaConfig = new AreaConfig()
     {
         Title = new AntDesign.Charts.Title()
         {
@@ -147,13 +156,12 @@ using MongoDB.Bson;
         Description = new Description()
         {
             Visible = true,
-            Text = "Evolution of price"
+            Text = "The currency is USD"
         },
         Padding = "auto",
         ForceFit = true,
         XField = "effectivedate",
         YField = "priceperunit",
-        Smooth = true
     };
 
     protected override async Task OnInitializedAsync()
@@ -173,20 +181,63 @@ using MongoDB.Bson;
                     Skuname = PricesService.GetSkuname(provider_input);
                     StateHasChanged();
                 }
+                if (check_skuname_change != skuname_input)
+                {
+                    check_skuname_change = skuname_input;
+                    show_region = true;
+                    Region = PricesService.GetRegion(skuname_input);
+                    StateHasChanged();
+                }
+                if (check_region_change != region_input)
+                {
+                    check_region_change = region_input;
+                    show_billingtype = true;
+                    Billingtype = PricesService.GetBillingtype(region_input, skuname_input);
+                    StateHasChanged();
+                }
+                if (check_billingtype_change != billingtype_input)
+                {
+                    check_billingtype_change = billingtype_input;
+                    show_button = true;
+                    StateHasChanged();
+                }
             });
         };
         timer.Start();
     }
 
-    protected void GetHistoric()
+    protected async void GetHistoric()
     {
-        show_graph = true;
-        data = PricesService.GetHistoric(skuname_input);
+        data = PricesService.GetHistoric(skuname_input, region_input, billingtype_input);
+        data = data.OrderBy(o => this.GetPropValue(o, "effectivedate")).ToList();
+        try {
+            if (data.Count() > 1)
+            {
+                show_graph = true;
+            }
+            else if ( data.Count() == 1)
+            {
+                await JsRuntime.InvokeVoidAsync("alert", String.Format("We Just have one price and it's {0} {1} per {2}", data[0].priceperunit, data[0].currency, data[0].unit));
+            }
+            else if (data.Count() <= 0)
+            {
+                await JsRuntime.InvokeVoidAsync("alert", "No price kown");
+            }
+        } catch {
+            await JsRuntime.InvokeVoidAsync("alert", "No price kown");
+        }
+
+    }
+
+    public object GetPropValue(object src, string propName)
+    {
+        return src.GetType().GetProperty(propName).GetValue(src, null);
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPricesService PricesService { get; set; }
     }
 }

@@ -392,7 +392,7 @@
           "lib/netstandard1.3/OneOf.dll": {}
         }
       },
-      "Radzen.Blazor/3.7.2": {
+      "Radzen.Blazor/3.7.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Components": "5.0.0",
@@ -2453,10 +2453,10 @@
         "oneof.nuspec"
       ]
     },
-    "Radzen.Blazor/3.7.2": {
-      "sha512": "tZW8I4YkhFch1jH182jtpztIOiVUk32h6Tk+Dj9+b6Gt0TwJ0XTPvjnKMgAAd/dGc508Ka92h5NygpVczRT0fA==",
+    "Radzen.Blazor/3.7.3": {
+      "sha512": "QsJwYj2kg/99DUE8+YT5zQL6+Oh0GcT/Gy6CGHhBs359qTn32+RyQ4OSi/fJwsKtq2NA+FccwQco+Dvj+JQzXQ==",
       "type": "package",
-      "path": "radzen.blazor/3.7.2",
+      "path": "radzen.blazor/3.7.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2468,7 +2468,7 @@
         "icon.png",
         "lib/net5.0/Radzen.Blazor.dll",
         "lib/netstandard2.1/Radzen.Blazor.dll",
-        "radzen.blazor.3.7.2.nupkg.sha512",
+        "radzen.blazor.3.7.3.nupkg.sha512",
         "radzen.blazor.nuspec",
         "staticwebassets/Radzen.Blazor.js",
         "staticwebassets/css/dark-base.css",
@@ -5852,7 +5852,7 @@
       "AntDesign >= 0.8.4",
       "AntDesign.Charts >= 0.2.1",
       "MongoDB.Driver >= 2.13.0",
-      "Radzen.Blazor >= 3.7.2"
+      "Radzen.Blazor >= 3.7.3"
     ]
   },
   "packageFolders": {
@@ -5918,7 +5918,7 @@
           },
           "Radzen.Blazor": {
             "target": "Package",
-            "version": "[3.7.2, )"
+            "version": "[3.7.3, )"
           }
         },
         "imports": [

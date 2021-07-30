@@ -33,13 +33,17 @@ namespace CloudPrice.Services
 
         public List<Sizes> GetSizes()
         {
-            Console.WriteLine("Get Sizes execution");
             return _sizesTable.Find(x => true).ToList();
         }
 
-        public Task<GridEntity<Sizes>> GetSizesAsync(int pageIndex, int pageSize, QueryModel<Sizes> queryModel)
+        public List<Sizes> GetSizes_limited(int page_index, int page_size)
         {
-            var forcastList = GetSizes();
+            return _sizesTable.Find(x => true).Limit(page_index * page_size * 5).ToList();
+        }
+
+        public Task<GridEntity<Sizes>> GetSizesAsync(int pageIndex, int pageSize, QueryModel<Sizes> queryModel, Sizes[] sizes)
+        {
+            var forcastList = sizes.ToList();
             foreach (var sort in queryModel.SortModel)
             {
                 if (sort.Sort != null)
@@ -63,7 +67,73 @@ namespace CloudPrice.Services
         }
         public object GetPropValue(object src, string propName)
         {
-            return src.GetType().GetProperty(propName).GetValue(src, null);
+            var result = src.GetType().GetProperty(propName).GetValue(src, null);
+            return result;
+        }
+
+        public List<Sizes> GetSizes_spe(Dictionary<string, IEnumerable<string>> tags)
+        {
+            var builder = Builders<BsonDocument>.Filter;
+            FilterDefinition<BsonDocument> all_filter = builder.Gt("ram", 0);
+            Dictionary<string, IEnumerable<string>>.KeyCollection keys = tags.Keys;
+            
+            foreach (var key in keys)
+            {
+                foreach (var element in tags[key])
+                {
+                    all_filter = all_filter & builder.Eq(key, element);
+                }
+            }
+            List<Sizes> data = new();
+            List<Sizes> result = new();
+            data = _database.GetCollection<Sizes>("sizes").Find(x => true).ToList();
+            foreach (var i in data)
+            {
+                if (filter(tags, i)) {
+                    result.Add(i);
+                }
+            }
+            return result;
+        }
+
+        private bool filter(Dictionary<string, IEnumerable<string>> tags, Sizes x)
+        {
+            Dictionary<string, IEnumerable<string>>.KeyCollection keys = tags.Keys;
+            int total_pass = 0;
+            int total_validation = 0;
+            int real_validation = 0;
+
+            foreach (var key in keys)
+            {
+                if (tags[key].Count() == 0)
+                {
+                    total_pass += 1;
+                    if (total_pass == 7)
+                    {
+                        return true;
+                    }
+                    continue;
+                }
+                total_validation += 1;
+                foreach (var element in tags[key])
+                {
+                    try {
+                        if (element == (string)GetPropValue(x, key))
+                        {
+                            real_validation += 1;
+                        }
+                    }
+                    catch
+                    {
+                        if (element == GetPropValue(x, key).ToString())
+                        {
+                            real_validation += 1;
+                        }
+                    }
+                }
+            }
+            return real_validation >= total_validation;
+
         }
     }
 }

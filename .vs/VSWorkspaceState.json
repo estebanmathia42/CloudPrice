@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Services"
+    "\\Pages"
   ],
-  "SelectedNode": "\\Services\\SizesService.cs",
+  "SelectedNode": "\\Pages\\Catalogue.razor",
   "PreviewInSolutionExplorer": false
 }

@@ -96,7 +96,28 @@ using AntDesign.Charts;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Hisoric")]
+#nullable restore
+#line 2 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
+using CloudPrice.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
+using CloudPrice.IServices;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
+using MongoDB.Bson;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Historic")]
     public partial class Historic : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -105,50 +126,119 @@ using AntDesign.Charts;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 43 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
+#line 61 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Historic.razor"
        
     string provider_input = "";
     string skuname_input = "";
-    int ram_input = 0;
-    int cpu_input = 0;
     string region_input = "";
-    int disk_input = 0;
-    int maxdiskavailable_input = 0;
-    bool show = false;
-    List<Prices> data = new();
-
-    LineConfig lineConfig = new LineConfig()
+    string billingtype_input = "";
+    bool show_graph = false;
+    bool show_skuname = false;
+    bool show_region = false;
+    bool show_billingtype = false;
+    bool show_button = false;
+    string check_provider_change = "";
+    string check_skuname_change = "";
+    string check_region_change = "";
+    string check_billingtype_change = "";
+    List<Prices> data;
+    List<string> Provider = new();
+    List<string> Skuname = new();
+    List<string> Region = new();
+    List<string> Billingtype = new();
+    AreaConfig areaConfig = new AreaConfig()
     {
         Title = new AntDesign.Charts.Title()
         {
             Visible = true,
-            Text = "Title"
+            Text = "Price Historic"
         },
         Description = new Description()
         {
             Visible = true,
-            Text = "description"
+            Text = "The currency is USD"
         },
         Padding = "auto",
         ForceFit = true,
-        XField = "name",
-        YField = "age",
-        Smooth = true
+        XField = "effectivedate",
+        YField = "priceperunit",
     };
 
     protected override async Task OnInitializedAsync()
     {
-        List<string> Regions = PricesService.GetPrices();
+        Provider = PricesService.GetProvider();
+
+        base.OnInitialized();
+        var timer = new System.Timers.Timer(100);
+        timer.Elapsed += (s, e) =>
+        {
+            InvokeAsync(() =>
+            {
+                if (check_provider_change != provider_input)
+                {
+                    check_provider_change = provider_input;
+                    show_skuname = true;
+                    Skuname = PricesService.GetSkuname(provider_input);
+                    StateHasChanged();
+                }
+                if (check_skuname_change != skuname_input)
+                {
+                    check_skuname_change = skuname_input;
+                    show_region = true;
+                    Region = PricesService.GetRegion(skuname_input);
+                    StateHasChanged();
+                }
+                if (check_region_change != region_input)
+                {
+                    check_region_change = region_input;
+                    show_billingtype = true;
+                    Billingtype = PricesService.GetBillingtype(region_input, skuname_input);
+                    StateHasChanged();
+                }
+                if (check_billingtype_change != billingtype_input)
+                {
+                    check_billingtype_change = billingtype_input;
+                    show_button = true;
+                    StateHasChanged();
+                }
+            });
+        };
+        timer.Start();
     }
 
-    protected void GetHistoric()
+    protected async void GetHistoric()
     {
-        data = PricesService.GetHistoric(provider_input, skuname_input, ram_input, cpu_input, region_input, disk_input, maxdiskavailable_input);
+        data = PricesService.GetHistoric(skuname_input, region_input, billingtype_input);
+        data = data.OrderBy(o => this.GetPropValue(o, "effectivedate")).ToList();
+        try {
+            if (data.Count() > 1)
+            {
+                show_graph = true;
+            }
+            else if ( data.Count() == 1)
+            {
+                await JsRuntime.InvokeVoidAsync("alert", String.Format("We Just have one price and it's {0} {1} per {2}", data[0].priceperunit, data[0].currency, data[0].unit));
+            }
+            else if (data.Count() <= 0)
+            {
+                await JsRuntime.InvokeVoidAsync("alert", "No price kown");
+            }
+        } catch {
+            await JsRuntime.InvokeVoidAsync("alert", "No price kown");
+        }
+
+    }
+
+    public object GetPropValue(object src, string propName)
+    {
+        return src.GetType().GetProperty(propName).GetValue(src, null);
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPricesService PricesService { get; set; }
     }
 }
 #pragma warning restore 1591

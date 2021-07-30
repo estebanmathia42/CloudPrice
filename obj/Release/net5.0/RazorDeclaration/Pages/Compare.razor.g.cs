@@ -132,6 +132,18 @@ using AntDesign.TableModels;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 18 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Compare.razor"
+       
+    Skuname = 
+    List<string> Skuname = new();
+    string skuname_input = "";
+
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPricesService PricesService { get; set; }
     }
 }
 #pragma warning restore 1591

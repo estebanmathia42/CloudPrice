@@ -36,7 +36,7 @@
           "AntDesign": "0.8.4",
           "AntDesign.Charts": "0.2.1",
           "MongoDB.Driver": "2.13.0",
-          "Radzen.Blazor": "3.7.2",
+          "Radzen.Blazor": "3.7.3",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "5.0.0.0",
@@ -594,7 +594,7 @@
           "lib/netstandard1.3/OneOf.dll": {}
         }
       },
-      "Radzen.Blazor/3.7.2": {
+      "Radzen.Blazor/3.7.3": {
         "dependencies": {
           "Microsoft.AspNetCore.Components": "5.0.0",
           "Microsoft.AspNetCore.Components.Web": "5.0.0",
@@ -603,8 +603,8 @@
         },
         "runtime": {
           "lib/net5.0/Radzen.Blazor.dll": {
-            "assemblyVersion": "3.7.2.0",
-            "fileVersion": "3.7.2.0"
+            "assemblyVersion": "3.7.3.0",
+            "fileVersion": "3.7.3.0"
           }
         },
         "compile": {
@@ -3133,12 +3133,12 @@
       "path": "oneof/2.1.155",
       "hashPath": "oneof.2.1.155.nupkg.sha512"
     },
-    "Radzen.Blazor/3.7.2": {
+    "Radzen.Blazor/3.7.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-tZW8I4YkhFch1jH182jtpztIOiVUk32h6Tk+Dj9+b6Gt0TwJ0XTPvjnKMgAAd/dGc508Ka92h5NygpVczRT0fA==",
-      "path": "radzen.blazor/3.7.2",
-      "hashPath": "radzen.blazor.3.7.2.nupkg.sha512"
+      "sha512": "sha512-QsJwYj2kg/99DUE8+YT5zQL6+Oh0GcT/Gy6CGHhBs359qTn32+RyQ4OSi/fJwsKtq2NA+FccwQco+Dvj+JQzXQ==",
+      "path": "radzen.blazor/3.7.3",
+      "hashPath": "radzen.blazor.3.7.3.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",

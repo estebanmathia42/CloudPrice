@@ -12,6 +12,8 @@ namespace CloudPrice.IServices
     {
         Sizes GetSize(string SizesID);
         List<Sizes> GetSizes();
-        Task<GridEntity<Sizes>> GetSizesAsync(int pageIndex, int pageSize, QueryModel<Sizes> queryModel);
+        List<Sizes> GetSizes_limited(int pageIndex, int pageSize);
+        Task<GridEntity<Sizes>> GetSizesAsync(int pageIndex, int pageSize, QueryModel<Sizes> queryModel, Sizes[] sizes);
+        List<Sizes> GetSizes_spe(Dictionary<string, IEnumerable<string>> tags);
     }
 }

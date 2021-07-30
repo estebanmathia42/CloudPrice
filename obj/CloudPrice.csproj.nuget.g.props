@@ -19,7 +19,7 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)radzen.blazor\3.7.2\buildTransitive\Radzen.Blazor.props" Condition="Exists('$(NuGetPackageRoot)radzen.blazor\3.7.2\buildTransitive\Radzen.Blazor.props')" />
+    <Import Project="$(NuGetPackageRoot)radzen.blazor\3.7.3\buildTransitive\Radzen.Blazor.props" Condition="Exists('$(NuGetPackageRoot)radzen.blazor\3.7.3\buildTransitive\Radzen.Blazor.props')" />
     <Import Project="$(NuGetPackageRoot)antdesign.charts\0.2.1\buildTransitive\AntDesign.Charts.props" Condition="Exists('$(NuGetPackageRoot)antdesign.charts\0.2.1\buildTransitive\AntDesign.Charts.props')" />
     <Import Project="$(NuGetPackageRoot)antdesign\0.8.4\buildTransitive\AntDesign.props" Condition="Exists('$(NuGetPackageRoot)antdesign\0.8.4\buildTransitive\AntDesign.props')" />
   </ImportGroup>

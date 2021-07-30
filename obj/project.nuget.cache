@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mggSgG6mbv+9cCttHE+M9SbcLUWO0F3f8aFryG7mgqol6t+3QGHv1bQ3Fg09CQOib5txDYmUkoULG06ebzObbw==",
+  "dgSpecHash": "+WWu56FqmpFof7nMEZP4Wl78yY3w7nLOLYmyqTRLdDX+6VyeHGoi5w676Kfm4hngsR53ZfE68feqMhvIr9d4GA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Esteban\\Source\\Repos\\CloudPricewebapp\\CloudPrice.csproj",
   "expectedPackageFiles": [
@@ -30,7 +30,7 @@
     "C:\\Users\\Esteban\\.nuget\\packages\\mongodb.libmongocrypt\\1.2.1\\mongodb.libmongocrypt.1.2.1.nupkg.sha512",
     "C:\\Users\\Esteban\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\Esteban\\.nuget\\packages\\oneof\\2.1.155\\oneof.2.1.155.nupkg.sha512",
-    "C:\\Users\\Esteban\\.nuget\\packages\\radzen.blazor\\3.7.2\\radzen.blazor.3.7.2.nupkg.sha512",
+    "C:\\Users\\Esteban\\.nuget\\packages\\radzen.blazor\\3.7.3\\radzen.blazor.3.7.3.nupkg.sha512",
     "C:\\Users\\Esteban\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Esteban\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Esteban\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
