@@ -83,71 +83,15 @@ using CloudPrice.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\_Imports.razor"
-using AntDesign.Charts;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 2 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Catalogue.razor"
-using CloudPrice.Data;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Catalogue.razor"
-using CloudPrice.Services;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Catalogue.razor"
-using CloudPrice.IServices;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 5 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Catalogue.razor"
+#line 11 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\_Imports.razor"
 using AntDesign;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Catalogue.razor"
-using AntDesign.Select;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 7 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Catalogue.razor"
-using AntDesign.TableModels;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 8 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Catalogue.razor"
-using Radzen;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 9 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Catalogue.razor"
-using Radzen.Blazor;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 10 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Catalogue.razor"
-using System.Threading;
+#line 12 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\_Imports.razor"
+using AntDesign.Charts;
 
 #line default
 #line hidden
@@ -161,155 +105,36 @@ using System.Threading;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 147 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Catalogue.razor"
-       
-    List<List<string>> _tags = new List<List<string>>();
+#line 32 "C:\Users\Esteban\Source\Repos\CloudPricewebapp\Pages\Catalogue.razor"
+ 
+    List<string> _items;
+    IEnumerable<string> _selectedValues1, _selectedValues2;
 
-    AntDesign.ITable table;
-    int _pageIndex = 1;
-    int _pageSize = 10;
-    int _total = 0;
-    bool check_loading_tags = false;
-    bool check_loading_tags_all = false;
-    Sizes[] check_loading_sizes;
-    Sizes[] sizes;
-
-    Dictionary<string, IEnumerable<string>> tags_select = new Dictionary<string, IEnumerable<string>>() { };
-
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        tags_select.Add("provider", new List<string> { });
-        tags_select.Add("skuname", new List<string> { });
-        tags_select.Add("region", new List<string> { });
-        tags_select.Add("cpu", new List<string> { });
-        tags_select.Add("ram", new List<string> { });
-        tags_select.Add("disk", new List<string> { });
-        tags_select.Add("maxdiskavailable", new List<string> { });
+        const int min = 10;
+        const int max = 36;
+        _items = new List<string>();
 
-        Thread t = new Thread(new ThreadStart(get_size));
-        t.Start();
-        base.OnInitialized();
-        var timer = new System.Timers.Timer(100);
-        timer.Elapsed += (s, e) =>
+        for (var i = min; max > i; i++)
         {
-            InvokeAsync(() =>
-            {
-                if (check_loading_sizes != sizes)
-                {
-                    StateHasChanged();
-                }
-            });
-        };
-        timer.Start();
-    }
-
-    public void get_size()
-    {
-        var forcastList = SizesService.GetSizes_limited(_pageIndex, _pageSize);
-        var totalcount = forcastList.Count;
-
-        GridEntity<Sizes> list = new();
-        list.Items = forcastList;
-        list.TotalCount = totalcount;
-        sizes = list.Items.ToArray();
-        _pageIndex = 1;
-        _pageSize = 10;
-        _total = list.TotalCount;
-    }
-
-    public void get_tags()
-    {
-        if (!(check_loading_tags)) {
-            _tags.Add(list_element("provider"));
-            _tags.Add(list_element("skuname"));
-            _tags.Add(list_element("region"));
-            _tags.Add(list_element_int("cpu"));
-            _tags.Add(list_element_int("ram"));
-            _tags.Add(list_element_int("disk"));
-            _tags.Add(list_element_int("maxdiskavailable"));
-            check_loading_tags = true;
-        }
-        else if (!(check_loading_tags_all))
-        {
-            _tags[0] = list_element("provider");
-            _tags[1] = list_element("skuname");
-            _tags[2] = list_element("region");
-            _tags[3] = list_element_int("cpu");
-            _tags[4] = list_element_int("ram");
-            _tags[5] = list_element_int("disk");
-            _tags[6] = list_element_int("maxdiskavailable");
-            check_loading_tags_all = true;
+            var value = Convert.ToString(i, 16).PadLeft(2, '0') + i.ToString();
+            _items.Add(value);
         }
 
-
+        _selectedValues1 = new List<string> { "0a10", "0c12" };
+        _selectedValues2 = new List<string> { "0a10", "0c12" };
     }
 
-    private List<string> list_element(string element)
+    private void OnSelectedItemsChangedHandler(IEnumerable<string> values)
     {
-        List<string> data = new();
-        foreach (var each_element in sizes)
-        {
-            if (!(data.Contains((string)GetPropValue(each_element, element))))
-            {
-                data.Add((string)GetPropValue(each_element, element));
-            }
-        }
-        return data;
-    }
-
-    private List<string> list_element_int(string element)
-    {
-        List<string> data = new();
-        foreach (var each_element in sizes)
-        {
-            if (!(data.Contains(GetPropValue(each_element, element).ToString())))
-            {
-                data.Add(GetPropValue(each_element, element).ToString());
-            }
-        }
-        return data;
-    }
-
-    public object GetPropValue(object src, string propName)
-    {
-        return src.GetType().GetProperty(propName).GetValue(src, null);
-    }
-
-    async Task onChange(QueryModel<Sizes> queryModel)
-    {
-        var data = await SizesService.GetSizesAsync(queryModel.PageIndex, queryModel.PageSize, queryModel, sizes);
-        sizes = data.Items.ToArray();
-
-        _pageIndex = queryModel.PageIndex;
-        _pageSize = queryModel.PageSize;
-        _total = data.TotalCount;
-        get_tags();
-    }
-
-    public void handleChangeTags(IEnumerable<string> values)
-    {
-        Thread t = new Thread(new ThreadStart(handleChangeTags_get_new));
-        t.Start();
-    }
-
-    public void handleChangeTags_get_new()
-    {
-        Console.WriteLine(tags_select);
-        var data = SizesService.GetSizes_spe(tags_select);
-
-        GridEntity<Sizes> list = new();
-        list.Items = data;
-        list.TotalCount = data.Count;
-        sizes = list.Items.ToArray();
-        _pageIndex = 1;
-        _total = list.TotalCount;
-        get_tags();
+        if (values != null)
+            Console.WriteLine($"selected: ${string.Join(",", values)}");
     }
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ISizesService SizesService { get; set; }
     }
 }
 #pragma warning restore 1591

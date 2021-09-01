@@ -1,5 +1,3 @@
-using CloudPrice.IServices;
-using CloudPrice.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,8 +21,6 @@ namespace CloudPrice
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddScoped<ISizesService, SizesService>();
-            services.AddScoped<IPricesService, PricesService>();
             services.AddAntDesign();
         }
 

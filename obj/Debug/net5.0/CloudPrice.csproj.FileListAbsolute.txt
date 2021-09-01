@@ -83,9 +83,6 @@ C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\CloudPrice.MvcAp
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\CloudPrice.RazorComponent.input.cache
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogue.razor.g.cs
-C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\RazorDeclaration\Pages\Compare.razor.g.cs
-C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\RazorDeclaration\Pages\Historic.razor.g.cs
-C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
@@ -130,9 +127,6 @@ C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\CloudPrice.TagHe
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\CloudPrice.RazorCoreGenerate.cache
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\Razor\App.razor.g.cs
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\Razor\Pages\Catalogue.razor.g.cs
-C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\Razor\Pages\Compare.razor.g.cs
-C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\Razor\Pages\Historic.razor.g.cs
-C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\Razor\Shared\SurveyPrompt.razor.g.cs
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
 C:\Users\Esteban\Source\Repos\CloudPricewebapp\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
