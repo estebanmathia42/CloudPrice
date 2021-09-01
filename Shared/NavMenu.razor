@@ -1,39 +1,16 @@
 ﻿<div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href=""><img src="./css/images/LOGO-THECLOUDPRICES.COM.svg" height="50px" /></a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+    <button class="navbar-toggler">
         <span class="navbar-toggler-icon"></span>
     </button>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+<div class="@NavMenuCssClass">
     <ul class="nav flex-column">
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <img src="./css/images/THECLOUDPRICES/BLEU FONCE/RECHERCHE.svg" height="35px" /><p class="text-navlink-button">Catalogue</p>
             </NavLink>
         </li>
-
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="Compare">
-                <img src="./css/images/THECLOUDPRICES/BLEU FONCE/COMPARAISON.svg" height="35px" /><p class="text-navlink-button">Compare</p>
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="Historic">
-                <img src="./css/images/THECLOUDPRICES/BLEU FONCE/COMPARAISON.svg" height="35px" /><p class="text-navlink-button">Historic</p>
-            </NavLink>
-        </li>
-
     </ul>
 </div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
